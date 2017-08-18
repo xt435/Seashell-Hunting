@@ -1,0 +1,19 @@
+{
+  "name": "chat-example",
+  "version": "0.0.0",
+  "description": "Find out beaches for hunting seashells",
+  "main": "app.js",
+  "author": "Xuanchang Tong",
+  "dependencies": {
+    "async": "~0.2.8",
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.7",
+    "express": "^3.2.6",
+    "socket.io": "~0.9.14"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "devDependencies": {},
+  "license": "ISC"
+}
