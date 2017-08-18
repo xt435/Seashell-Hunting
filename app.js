@@ -9,12 +9,6 @@ app.set("view engine", "ejs");
 var huntingGrounds = [
     {name: "Calvert Cliffs State Park, Maryland", image: "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2016/08/5/0/CI_Calvert_Marine_Museum-Shark-Teeth-Calvert-Cliffs.jpg.rend.hgtvcom.616.462.suffix/1491593549499.jpeg"},
     {name: "Jeffreys Bay, South Africa", image: "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2016/08/5/0/CI_Calvert_County_Dept_Economic_Development-Sharks-Tooth-Calvert-Cliffs-Beach.jpg.rend.hgtvcom.616.462.suffix/1491593549472.jpeg"},
-    {name: "Calvert Cliffs State Park, Maryland", image: "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2016/08/5/0/CI_Calvert_Marine_Museum-Shark-Teeth-Calvert-Cliffs.jpg.rend.hgtvcom.616.462.suffix/1491593549499.jpeg"},
-    {name: "Jeffreys Bay, South Africa", image: "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2016/08/5/0/CI_Calvert_County_Dept_Economic_Development-Sharks-Tooth-Calvert-Cliffs-Beach.jpg.rend.hgtvcom.616.462.suffix/1491593549472.jpeg"},
-    {name: "Calvert Cliffs State Park, Maryland", image: "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2016/08/5/0/CI_Calvert_Marine_Museum-Shark-Teeth-Calvert-Cliffs.jpg.rend.hgtvcom.616.462.suffix/1491593549499.jpeg"},
-    {name: "Jeffreys Bay, South Africa", image: "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2016/08/5/0/CI_Calvert_County_Dept_Economic_Development-Sharks-Tooth-Calvert-Cliffs-Beach.jpg.rend.hgtvcom.616.462.suffix/1491593549472.jpeg"},
-    {name: "Calvert Cliffs State Park, Maryland", image: "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2016/08/5/0/CI_Calvert_Marine_Museum-Shark-Teeth-Calvert-Cliffs.jpg.rend.hgtvcom.616.462.suffix/1491593549499.jpeg"},
-    {name: "Jeffreys Bay, South Africa", image: "http://travel.home.sndimg.com/content/dam/images/travel/fullrights/2016/08/5/0/CI_Calvert_County_Dept_Economic_Development-Sharks-Tooth-Calvert-Cliffs-Beach.jpg.rend.hgtvcom.616.462.suffix/1491593549472.jpeg"}
 ];
 
 app.get("/", function(req, res) {
