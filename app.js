@@ -7,6 +7,7 @@ var express = require("express"),
     seedDB  = require("./seeds")
     
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/seashell_hunting");
+// mongoose.connect("mongodb://localhost/seashell_hunting");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 seedDB();
