@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+
+<h1><%=foundHuntingGround.name %></h1>
+
+<img src="<%= foundHuntingGround.image %>">
+
+<p><%= foundHuntingGround.description %></p>
+
+<p>
+    <a class="btn btn-success" href="/hunting_grounds/<%= foundHuntingGround._id %>/comments/new">Add New Comment</a>
+</p>
+
+<% foundHuntingGround.comments.forEach(function(comment){ %>
+    <p>
+        <strong><%= comment.author %></strong> - <%= comment.text %>
+    </p>
+<% }) %>
+
+<% include ../partials/footer %>
+
