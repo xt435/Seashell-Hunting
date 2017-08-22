@@ -22,7 +22,7 @@ var data = [
 
 function seedDB(){
    //Remove all campgrounds
-   HuntingGround.remove({}, function(err){
+   HuntingGround.remove({name: "No place"}, function(err){
         if(err){
             console.log(err);
         }
