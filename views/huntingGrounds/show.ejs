@@ -1,20 +1,48 @@
 <% include ../partials/header %>
 
-<h1><%=foundHuntingGround.name %></h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Seashell Hunting</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= foundHuntingGround.image %>">
+                <div class="caption-full">
+                    <h4 class="pull-right">$100.00/night</h4>
+                    <h4><a></a><%=foundHuntingGround.name %></a></h4>
+                    <p><%= foundHuntingGround.description %></p>
+                </div>
+            </div>
+            
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/hunting_grounds/<%= foundHuntingGround._id %>/comments/new">Add New Comment</a>
+                </div>
+                <% foundHuntingGround.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author %></strong>
+                            <span class="pull-right">10 days ago</span>
+                            <p>
+                                <%= comment.text %>
+                            </p>                        
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
 
-<img src="<%= foundHuntingGround.image %>">
+    </div>
+</div>
 
-<p><%= foundHuntingGround.description %></p>
 
-<p>
-    <a class="btn btn-success" href="/hunting_grounds/<%= foundHuntingGround._id %>/comments/new">Add New Comment</a>
-</p>
 
-<% foundHuntingGround.comments.forEach(function(comment){ %>
-    <p>
-        <strong><%= comment.author %></strong> - <%= comment.text %>
-    </p>
-<% }) %>
 
 <% include ../partials/footer %>
 

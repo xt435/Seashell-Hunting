@@ -10,6 +10,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/seashell_huntin
 // mongoose.connect("mongodb://localhost/seashell_hunting");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 // seedDB();
 
 // HuntingGround.create(
