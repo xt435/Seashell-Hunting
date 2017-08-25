@@ -2,10 +2,30 @@ var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
+    passport = require("passport"),
+    LocalStrategy = require("passport-local"),
     HuntingGround = require("./models/huntingGround"),
     Comment     = require("./models/comment"),
+    User = require("./models/user"),
     seedDB  = require("./seeds")
-    
+
+// PASSPORT CONFIGURATION
+app.use(require("express-session")({
+    secret: "This is a secret",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/seashell_hunting");
 // mongoose.connect("mongodb://localhost/seashell_hunting");
 app.use(bodyParser.urlencoded({extended: true}));
@@ -40,7 +60,7 @@ app.get("/hunting_grounds", function(req, res) {
         if(err){
             console.log(err);
         } else {
-            res.render("huntingGrounds/index", {huntingGrounds:allHuntingGrounds});
+            res.render("huntingGrounds/index", {huntingGrounds:allHuntingGrounds, currentUser: req.user});
         }
     })
 });
@@ -82,7 +102,7 @@ app.get("/hunting_grounds/:id", function(req, res){
 // COMMENTS ROUTES
 // ====================
 
-app.get("/hunting_grounds/:id/comments/new", function(req, res){
+app.get("/hunting_grounds/:id/comments/new", isLoggedIn, function(req, res){
     // find campground by id
     HuntingGround.findById(req.params.id, function(err, huntingGround){
         if(err){
@@ -93,7 +113,7 @@ app.get("/hunting_grounds/:id/comments/new", function(req, res){
     })
 });
 
-app.post("/hunting_grounds/:id/comments", function(req, res){
+app.post("/hunting_grounds/:id/comments", isLoggedIn, function(req, res){
    //lookup campground using ID
    HuntingGround.findById(req.params.id, function(err, huntingground){
        if(err){
@@ -116,6 +136,54 @@ app.post("/hunting_grounds/:id/comments", function(req, res){
    //redirect campground show page
 });
 
+// ========================
+// Auth Routes
+// ========================
+
+// show register form
+app.get("/register", function(req, res){
+    res.render("register");
+});
+// handle sign up logic
+app.post("/register", function(req, res){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render("register");
+        }
+        passport.authenticate("local")(req, res, function(){
+            res.redirect("/hunting_grounds");
+        });
+    });
+});
+
+// show login form
+app.get("/login", function(req, res){
+    res.render("login");
+});
+
+//handling login logic
+app.post("/login", passport.authenticate("local", 
+    {
+        successRedirect: "/hunting_grounds",
+        failureRedirect: "/login" 
+    }), function(req, res){
+    
+});
+
+// logout route
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/hunting_grounds");
+});
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Seashell Hunting server has been started!")

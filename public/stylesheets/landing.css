@@ -40,18 +40,18 @@ body {
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url(http://tween-waters.com/wp-content/uploads/2015/05/IMG_2667-1.jpg) 
+  background-image: url(http://www.texascooppower.com/content/slideshow_shells_sand.jpg) 
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(http://www.visionarydestin.com/wp-content/uploads/2014/08/seashells.jpg);
+  background-image: url(http://tween-waters.com/wp-content/uploads/2015/05/IMG_2667-1.jpg);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(http://mustseeplaces.eu/wp-content/uploads/2015/04/sanibel-shells-3.jpg);
+  background-image: url(http://www.visionarydestin.com/wp-content/uploads/2014/08/seashells.jpg);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: url(http://www.texascooppower.com/content/slideshow_shells_sand.jpg);
+  background-image: url(http://mustseeplaces.eu/wp-content/uploads/2015/04/sanibel-shells-3.jpg);
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
